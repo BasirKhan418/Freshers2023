@@ -17,11 +17,14 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+background-color: black;
 }
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+.font{
+ font-family: 'Gabarito', cursive;
+}
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+.herofont{
+  font-family: 'Young Serif', serif;
+}
+
