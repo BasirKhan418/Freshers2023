@@ -56,9 +56,9 @@ const Navbar = () => {
         <Link className=" text-white hover:text-gray-400 font " href="#">Agenda</Link>
         <Link className=" text-white hover:text-gray-400 font" href="#">Venue</Link>
         <Link className=" text-white hover:text-gray-400 font" href="#">Contact Us</Link>
-        <button className='bg-yellow-600 text-white px-4 py-2 m-2 font hover:bg-gray-800 rounded-3xl border-2 border-yellow-800'>
+        <Link className='bg-yellow-600 text-white px-4 py-2 m-2 font hover:bg-gray-800 rounded-3xl border-2 border-yellow-800' href={"/Register"}>
        Register Now
-      </button>
+      </Link>
       </div>
       
     </div>
