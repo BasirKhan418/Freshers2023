@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import toast,{Toaster} from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Spinner from '../components/Spinner';
-import Image from 'next/image';
-import Head from 'next/head';
+
 const AdminLogin = () => {
   const[loading,setLoading]=useState(false);
   useEffect(()=>{
@@ -40,60 +39,43 @@ setPassword(e.target.value)
     setEmail('');
     setPassword('');
     if(response.success){
-      toast.success('Logged in successfully', {
-        position: "top-left",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
+     toast.success('Login Successfull', {
+      position: "top-right",
+     }
+     );
         localStorage.setItem('myAdmin',JSON.stringify({token:response.token,email:response.email}));
         setTimeout(()=>{
           router.push('/admin')
           },1500)
     }
     else if(!response.success){
-   //your toast here
+   toast.error(response.error, {
+    position: "top-right",
+   })
+
     }
    
          
   }
   catch(error){
     setLoading(false)
-    toast.error("Something went wrong ! Please try again after some time.", {
-      position: "top-left",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
+   
   }
   }
   return (
     <>
-     <Head>
-      <title>Login into admin panel | Manage Reservations and Culinary Services</title>
-      <meta name="description" content="Effortlessly manage reservations and streamline culinary services with our Hotel Booking and Food Delivery Admin Panel. Take control of bookings, track orders, and ensure seamless operations for your hotel and food delivery services. Simplify your administrative tasks and optimize your hospitality and dining experiences with our comprehensive admin panel."/>
-      <meta name="keywords" content="hotel booking, food delivery, accommodation, online reservations, gourmet dining, seamless service, delightful stay, convenient hospitality, doorstep delivery, culinary experience, vacation getaway, top-rated hotel, comfortable accommodations, exquisite cuisine, memorable retreat" />
-     </Head>
+   <Toaster/>
     {loading?<Spinner/>:
-      <div className="flexl flex-col justify-center px-6 py-12 lg:px-8 bg-white min-h-screen">
+      <div className="flexl flex-col justify-center px-6 py-12 lg:px-8 bg-black min-h-screen">
 
   <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-  <Image alt="logo" src="/cresentlogo.png" width={180} height={60} className='m-auto'/>
-    <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Admin Login</h2>
+    <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">Admin Login</h2>
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form className="space-y-6" onSubmit={handleSubmit} method="POST">
       <div>
-        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">Email address</label>
         <div className="mt-2">
           <input onChange={handleChange} value={email} id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6 p-2"/>
         </div>
@@ -101,7 +83,7 @@ setPassword(e.target.value)
 
       <div>
         <div className="flex items-center justify-between">
-          <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">Password</label>
           <div className="text-sm">
             <Link href={"/admin/adminforgot"} className="font-semibold text-amber-600 hover:text-amber-500">Forgot password?</Link>
           </div>

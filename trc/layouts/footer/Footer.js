@@ -7,7 +7,7 @@ const Footer = () => {
       <Typography>
         © 2023 All rights reserved by{" "}
         <Link href="/admin">
-          <span className="text-amber-500">HotelCresent.com & Devloped by Basir Technologies</span>
+          <span className="text-amber-500">AARAMBH DEVELOPED BY BASIR KHAN</span>
         </Link>{" "}
       </Typography>
     </Box>

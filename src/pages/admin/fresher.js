@@ -7,7 +7,7 @@ import toast,{Toaster} from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
-const Orders = ({ orderss }) => {
+const Fresher = ({ orderss }) => {
   const router =useRouter();
   const [order, SetOrder] = useState([]);
   const [modal, Setmodal] = useState(false);
@@ -15,7 +15,7 @@ const Orders = ({ orderss }) => {
   const [id ,setId]=useState("");
   useEffect(()=>{
     const ref = async () => {
-      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getsenior`);
+      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getfresher`);
       const resp = await a.json();
       SetOrder(resp.data);
       const myAdmin = localStorage.getItem('myAdmin')
@@ -106,7 +106,7 @@ const Orders = ({ orderss }) => {
                     Regd
                   </th>
                   <th scope="col" className="px-6 py-3 rounded text-center">
-                    Payment Status
+                   phone
                   </th>
                   {/* <th scope="col" className="px-6 py-3">
                     {/* Customer Address
@@ -141,7 +141,7 @@ const Orders = ({ orderss }) => {
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.name}</td>
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.email}</td>
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.regd}</td>
-                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${item.payment=="pending"?"text-red-500":""}${item.payment=="paid"?"text-green-500":""} `}>{item.payment}</td>
+                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${item.payment=="pending"?"text-red-500":""}${item.payment=="paid"?"text-green-500":""} `}>{item.phone}</td>
                      
                     
                       {/* <td className="px-6 py-4 font-semibold">{item.address}/ (District:-{item.city} Pin:-{item.pincode})<br/>Phone:-{item.phone}</td> */}
@@ -248,4 +248,4 @@ const Orders = ({ orderss }) => {
 };
 
 
-export default Orders;
+export default Fresher;

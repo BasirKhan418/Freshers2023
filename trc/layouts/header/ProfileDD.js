@@ -19,30 +19,28 @@ const ProfileDD = () => {
   const[name,setName]=useState("");
   useEffect(()=>{
     const myAdmin = JSON.parse(localStorage.getItem('myAdmin'));
-    if(myAdmin && myAdmin.token){
-     fetchdata(myAdmin.token);
-    }
+  
    
      },[])
-  const fetchdata=async(token)=>{
-    const data ={token:token};
-    const pr = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myadmin`, {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  // const fetchdata=async(token)=>{
+  //   const data ={token:token};
+  //   const pr = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myadmin`, {
+  //     method: "POST", // or 'PUT'
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
 
-    const res=await pr.json();
-    // setLoading(false)
-    // console.log(res)
-    // console.log(res.name,res.address,res.phone,res.pincode);
-    setName(res.name);
-    // setAddress(res.address);
-    // setPhone(res.phone);
-    // setPincode(res.pincode);
-   }
+  //   const res=await pr.json();
+  //   // setLoading(false)
+  //   // console.log(res)
+  //   // console.log(res.name,res.address,res.phone,res.pincode);
+  //   setName(res.name);
+  //   // setAddress(res.address);
+  //   // setPhone(res.phone);
+  //   // setPincode(res.pincode);
+  //  }
   const [anchorEl4, setAnchorEl4] = React.useState(null);
 
   const handleClick4 = (event) => {
