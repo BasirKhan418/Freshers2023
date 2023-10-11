@@ -63,7 +63,7 @@ const Orders = ({ orderss }) => {
         setStatus('');
     }
     else{
-      toast.error('Something went wrong', {
+      toast.error(response.message, {
         position: "top-right",
         });
     }

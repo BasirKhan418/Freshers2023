@@ -55,16 +55,24 @@ if(req.method=="POST"){
               pass: 'MaRwImrfStFp1TPD'
             }
           });
-let a = await Senior.findByIdAndUpdate({_id:req.body.id},{payment:req.body.payment});
+
 let cpn = `AR${Math.floor(Math.random() * 10000)}`;
 let coupon = await Coupon.findOne({cpn});
 if(coupon){
     cpn = `AR${Math.floor(Math.random() * 10000)}`;
 }
 else{
-    let a = new Coupon({cpn:cpn,regd:req.body.regd});
-    await a.save();
-    let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
+    try{
+        let ba = await Senior.findByIdAndUpdate({_id:req.body.id},{payment:req.body.payment});
+        let a = new Coupon({cpn:cpn,regd:req.body.regd});
+        await a.save();
+        let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
+    }
+    catch(err){
+       res.status(200).json({success:false,message:"Coupon not generated due to some error . Maybe same regd no. exists in coupon database"});
+    }
+   
+
 }
 
 if(mail.count>=1&&mail.count<=200){

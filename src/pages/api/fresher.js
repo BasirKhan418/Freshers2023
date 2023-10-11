@@ -73,14 +73,20 @@ const handler = async (req, res) => {
                 cpn = `AR${Math.floor(Math.random() * 10000)}`;
             }
             else{
-                let a = new Coupon({cpn:cpn,regd:regd});
-                await a.save();
-            }
-            console.log(cpn);
-            let a = new Fresher({name:name,email:email,regd:regd,meal:status});
-            await a.save();
+                try{
+                    let a = new Coupon({cpn:cpn,regd:regd});
+                    await a.save(); 
+                    let ab= new Fresher({name:name,email:email,regd:regd,meal:status});
+            await ab.save();
             let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
             res.status(200).json({success:true,data:a,cpn:cpn})
+                }
+                catch(err){
+                    res.status(400).json({success:false,message:"Error in coupon generation .Already with this registration number coupon is generated"})
+                }
+            }
+            console.log(cpn);
+            
             if(mail.count>=1&&mail.count<=200){
                 const info = await transporter.sendMail({
                     from: '<Team@arambh.com>', // sender address

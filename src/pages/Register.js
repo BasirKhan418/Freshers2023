@@ -29,7 +29,7 @@ const handleChange=(e)=>{
 }
 const handleSubmit=async()=>{
 const data={name,email,regd,status}
-console.log(data);
+console.log(data,fresh);
 if(name<=3){
     toast.error('Please enter a valid name !', {
         position: "top-right",
@@ -50,7 +50,7 @@ else if(email<=3){
         position: "top-right",
       })
 }
-else if(fresh==""){
+else if(fresh==null){
     toast.error('Please enter a valid registration type!', {
         position: "top-right",
       })
@@ -151,7 +151,7 @@ else{
 
                     <div className="mt-3 md:flex md:items-center md:-mx-2">
                         <button className={`flex justify-center w-full px-6 py-3 mt-4 text-white border border-yellow-500 rounded-lg md:mt-0 md:w-auto md:mx-2   focus:outline-none  ${fresh==true?"bg-yellow-500":""}`}  onClick={()=>{
-                            setFresh(!fresh)
+                            setFresh(true)
                            }}>
                            <TbSchool className='text-white text-2xl' />
 
@@ -161,7 +161,7 @@ else{
                         </button>
 
                         <button className={`flex justify-center w-full px-6 py-3 mt-4 text-white border border-yellow-500 rounded-lg md:mt-0 md:w-auto md:mx-2   focus:outline-none  ${fresh==false?"bg-yellow-500":""}`} onClick={()=>{
-                            setFresh(!fresh)
+                            setFresh(false)
                             }}>
                             <TbSchoolOff className='text-white text-2xl' />
 
