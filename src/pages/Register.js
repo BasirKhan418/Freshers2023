@@ -5,7 +5,7 @@ import Spinner from './components/Spinner';
 import { useRouter } from 'next/router';
 const Register = () => {
     const router =useRouter();
-    const [fresh, setFresh] = useState(true);
+    const [fresh, setFresh] = useState();
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [regd, setRegd] = useState('');
@@ -40,8 +40,18 @@ else if(regd<=3){
         position: "top-right",
       })
 }
+else if(status==""){
+    toast.error('Please enter your meal type!', {
+        position: "top-right",
+      })
+}
 else if(email<=3){
     toast.error('Please enter a valid email !', {
+        position: "top-right",
+      })
+}
+else if(fresh==""){
+    toast.error('Please enter a valid registration type!', {
         position: "top-right",
       })
 }
@@ -140,7 +150,7 @@ else{
                     <h1 className="text-gray-300">Select registration type</h1>
 
                     <div className="mt-3 md:flex md:items-center md:-mx-2">
-                        <button className={`flex justify-center w-full px-6 py-3 text-white ${fresh==true?"bg-yellow-500":""} rounded-lg md:w-auto md:mx-2 focus:outline-none border-yellow-500 `} onClick={()=>{
+                        <button className={`flex justify-center w-full px-6 py-3 mt-4 text-white border border-yellow-500 rounded-lg md:mt-0 md:w-auto md:mx-2   focus:outline-none  ${fresh==true?"bg-yellow-500":""}`}  onClick={()=>{
                             setFresh(!fresh)
                            }}>
                            <TbSchool className='text-white text-2xl' />
