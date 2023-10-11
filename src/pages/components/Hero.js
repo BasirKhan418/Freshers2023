@@ -1,5 +1,6 @@
 import React from 'react'
 import Timer from './Timer'
+import Link from 'next/link'
 const Hero = () => {
   return (
     <div className='text-white '>
@@ -321,6 +322,8 @@ const Hero = () => {
         data-autoplay="true"></a> */}
         <Timer/>
       <a href="#about" className="about-btn scrollto border-2 border-yellow-600 hover:bg-yellow-500">About The Event</a>
+      <Link href="/Register" ><div className=" border-2 border-yellow-600 bg-yellow-600 hover:bg-yellow-500 py-2 px-8 rounded-full block lg:hidden sm:block">
+      Register Now  </div></Link>
     </div>
   </section>
     </div>
