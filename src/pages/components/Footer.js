@@ -47,12 +47,12 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Category
+                EVENT
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
                   <Link
-                    href={"/login?recycler=true"}
+                    href={"/admin/adminlogin"}
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
                     Admin Login
@@ -60,168 +60,82 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href={"/Couponclaimsection"}
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    World
+                    Cpn
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/Register"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    Games
+                    Register
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/"
+                  <a
+                    href="#contact"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    References
-                  </Link>
+                    Contact
+                  </a>
                 </li>
+                
               </ul>
             </div>
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Cherry
+                Event Details
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
-                  <Link
-                    href="/"
+                  <a
+                    href="#timeline"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    Web
-                  </Link>
+                    Timeline
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    href="/"
+                  <a
+                    href="faq"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    eCommerce
-                  </Link>
+                    Faq
+                  </a>
                 </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Business
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Entertainment
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Portfolio
-                  </Link>
-                </li>
+              
               </ul>
             </div>
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Apples
+                Event Guests
               </p>
-              <ul className="mt-2 space-y-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Media
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Brochure
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Nonprofit
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Educational
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Projects
-                  </Link>
-                </li>
-              </ul>
+              <a className=" text-white hover:text-gray-400 font" href="#guest">Guest</a>
             </div>
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Business
+                Co-ordinator Details  
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
-                  <Link
-                    href="/"
+                  <a
+                    href="#co-ordinator"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    Infopreneur
-                  </Link>
+                    Co-ordinator
+                  </a>
                 </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Personal
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Wiki
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    Forum
-                  </Link>
-                </li>
+              
               </ul>
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
           <p className="text-sm text-gray-100">
-            © Copyright 2023 Freshiflavour. All rights reserved.
+            © Copyright 2023 Arambh. All rights reserved.
           </p>
           <div className="flex items-center mt-4 space-x-4 sm:mt-0 ">
             <Link

@@ -6,7 +6,7 @@ const About = () => {
       <style jsx global>
         {`
           #about {
-            background: url("about.jpg");
+            background: url("https://res.cloudinary.com/dawzncoau/image/upload/v1697017334/about_vrg6hf.jpg");
             background-size: cover;
             overflow: hidden;
             position: relative;

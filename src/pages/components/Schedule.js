@@ -2,7 +2,7 @@ import { Link } from 'feather-icons-react/build/IconComponents'
 import React from 'react'
 const Schedule = () => {
   return (
-    <div>
+    <div id='timeline'>
       <div className='bg-black font-bold flex justify-center flex-col items-center my-2'>
       <h1 className='font text-4xl text-white my-2'>
         Our Event Schedule

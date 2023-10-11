@@ -70,7 +70,7 @@ else{
               setRegd('');
               setPhone('');
               setTimeout(()=>{
-                router.push('/components/Confirm') 
+                router.push(`/components/Confirm?cpn=${response.cpn}`) ;
               },1000)
           }
           else if(!response.success){
@@ -128,7 +128,7 @@ else{
         <Toaster/>
       {loading?<Spinner/>:<section className="bg-gray-900 py-12">
     <div className="flex justify-center min-h-screen">
-        <div className="hidden bg-cover lg:block lg:w-2/5" style={{backgroundImage: "url('/home.jpg')"}}>
+        <div className="hidden bg-cover bg-no-repeat lg:block lg:w-2/5 " style={{backgroundImage: "url('https://res.cloudinary.com/dawzncoau/image/upload/v1697017713/WhatsApp_Image_2023-10-11_at_01.29.15_3d9696ae_lc7w2k.jpg') "}}>
         </div>
 
         <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
@@ -168,7 +168,7 @@ else{
                 <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                     <div>
                         <label className="block mb-2 text-sm text-gray-200"> Name</label>
-                        <input type="text" placeholder="John" name="name" value={name} onChange={handleChange} className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input type="text" placeholder="Your Full Name" name="name" value={name} onChange={handleChange} className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div>
@@ -194,7 +194,7 @@ else{
                         <span>Register Now </span>
 
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
+                            <path fillRule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd" />
                         </svg>

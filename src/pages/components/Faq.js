@@ -36,7 +36,7 @@ const Faq = () => {
 
   return (
     <div>
-      <section className="bg-black">
+      <section className="bg-black" id='faq'>
         <div className="container px-6 py-12 mx-auto">
             <div className='flex justify-center items-center flex-col font'>
             <h1 className='font text-4xl text-white'>

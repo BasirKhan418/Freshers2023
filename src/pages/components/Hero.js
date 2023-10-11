@@ -9,7 +9,7 @@ const Hero = () => {
        #intro {
         width: 100%;
         height:100vh;
-        background: url("/home.jpg") top center;
+        background: url("https://res.cloudinary.com/dawzncoau/image/upload/v1697017215/home_tijkvj.jpg") top center;
         background-size: cover;
         overflow: hidden;
         position: relative;
@@ -160,7 +160,7 @@ const Hero = () => {
       }
       
       #intro .about-btn:hover {
-        background: #f82249;
+        
         color: #fff;
       }
       
@@ -316,11 +316,11 @@ const Hero = () => {
       <section id="intro" className='absolute'>
     <div className="intro-container wow fadeIn">
       <h1 className="mb-4 pb-0 herofont">Join Us For <span className='text-yellow-600'> आRAMBH</span> 2023</h1>
-      <p className="mb-4 pb-0">13th October , 2023 , Near Gym Area At- 1.30 PM</p>
+      <p className="mb-4 pb-0">13th October , 2023 , Near Gym Area At- 12.30 PM</p>
       {/* <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" className="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a> */}
         <Timer/>
-      <a href="#about" className="about-btn scrollto border-2 border-yellow-600">About The Event</a>
+      <a href="#about" className="about-btn scrollto border-2 border-yellow-600 hover:bg-yellow-500">About The Event</a>
     </div>
   </section>
     </div>

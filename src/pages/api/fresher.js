@@ -35,7 +35,7 @@ const handler = async (req, res) => {
             console.log(cpn);
             let a = new Fresher({name:name,email:email,regd:regd,meal:meal,phone:phone});
             await a.save();
-            res.status(200).json({success:true,data:a})
+            res.status(200).json({success:true,data:a,cpn:cpn})
             const info = await transporter.sendMail({
                 from: '<Team@arambh.com>', // sender address
                 to: `${req.body.email}`, // list of receivers
