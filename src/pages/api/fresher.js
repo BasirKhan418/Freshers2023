@@ -57,7 +57,7 @@ const handler = async (req, res) => {
       });
 
         
-        let {name,email,regd,meal,phone}=req.body;
+        let {name,email,regd,meal,status}=req.body;
         let fresher = await Fresher.findOne({regd});
         let fresher1 = await Fresher.findOne({email});
         if(fresher){
@@ -73,11 +73,11 @@ const handler = async (req, res) => {
                 cpn = `AR${Math.floor(Math.random() * 10000)}`;
             }
             else{
-                let a = new Coupon({cpn:cpn});
+                let a = new Coupon({cpn:cpn,regd:regd});
                 await a.save();
             }
             console.log(cpn);
-            let a = new Fresher({name:name,email:email,regd:regd,meal:meal,phone:phone});
+            let a = new Fresher({name:name,email:email,regd:regd,meal:status});
             await a.save();
             let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
             res.status(200).json({success:true,data:a,cpn:cpn})

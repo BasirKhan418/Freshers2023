@@ -11,6 +11,7 @@ const Register = () => {
     const [regd, setRegd] = useState('');
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
+    const[status,setStatus]=useState('');
 const handleChange=(e)=>{
     if(e.target.name=="email"){
         setEmail(e.target.value)
@@ -21,13 +22,14 @@ const handleChange=(e)=>{
     else if(e.target.name=="regd"){
         setRegd(e.target.value)
     }
-    else if(e.target.name=="phone"){
-        setPhone(e.target.value)
+    else if(e.target.name=="status"){
+        setStatus(e.target.value)
     }
 
 }
 const handleSubmit=async()=>{
-const data={name,email,regd,phone}
+const data={name,email,regd,status}
+console.log(data);
 if(name<=3){
     toast.error('Please enter a valid name !', {
         position: "top-right",
@@ -35,11 +37,6 @@ if(name<=3){
 }
 else if(regd<=3){
     toast.error('Please enter a registration no. !', {
-        position: "top-right",
-      })
-}
-else if(phone<=9){
-    toast.error('Please enter a valid phone number !', {
         position: "top-right",
       })
 }
@@ -68,7 +65,7 @@ else{
               setEmail('');
               setName('');
               setRegd('');
-              setPhone('');
+              
               setTimeout(()=>{
                 router.push(`/components/Confirm?cpn=${response.cpn}`) ;
               },1000)
@@ -100,7 +97,7 @@ else{
               setEmail('');
               setName('');
               setRegd('');
-              setPhone('');
+              
               setTimeout(()=>{
                 router.push('/components/Confirm') 
               },1000)
@@ -177,20 +174,29 @@ else{
                     </div>
 
                     <div>
-                        <label className="block mb-2 text-sm text-gray-200">Phone number</label>
-                        <input type="text" name="phone" onChange={handleChange} value={phone}  placeholder="XXX-XX-XXXX-XXX" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
-
-                    <div>
                         <label className="block mb-2 text-sm text-gray-200">Email address</label>
                         <input type="email" name= "email" onChange={handleChange} value={email} placeholder="example@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
-
-
+<div>
+<label className="block mb-2 text-sm text-gray-200">Select Your Meal Type</label>
+                    <select
+                      id="status"
+                      name="status"
+                      value={status}
+                      onChange={handleChange}
+                   
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    >
+                        <option>Select</option>
+                        <option>NonVeg</option>
+                      <option>Veg</option>
+                      
+                     
+                    </select>
                   
-
+                    </div>
                     <button
-                        className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" onClick={handleSubmit}>
+                        className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 " onClick={handleSubmit}>
                         <span>Register Now </span>
 
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">

@@ -63,7 +63,7 @@ const Footer = () => {
                     href={"/Couponclaimsection"}
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    Cpn
+                    ARCPNCLM
                   </Link>
                 </li>
                 <li>

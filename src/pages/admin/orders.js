@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../trc/theme/theme";
 import FullLayout from "../../../trc/layouts/FullLayout";
-import mongoose from "mongoose";
+import mongoose, { set } from "mongoose";
 import toast,{Toaster} from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,6 +13,7 @@ const Orders = ({ orderss }) => {
   const [modal, Setmodal] = useState(false);
   const [status,setStatus]=useState("");
   const [id ,setId]=useState("");
+  const [regd,setRegd]=useState("");
   useEffect(()=>{
     const ref = async () => {
       let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getsenior`);
@@ -37,13 +38,14 @@ const Orders = ({ orderss }) => {
    }
    
   }
-  const updateorder=(id,status)=>{
+  const updateorder=(id,status,regd)=>{
    setId(id);
     setStatus(status);
+    setRegd(regd);
 
   }
   const handleUpdate=async()=>{
-    const data={id,payment:status};
+    const data={id,payment:status,regd};
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updatesenior`, {
       method: "POST", // or 'PUT'
@@ -141,7 +143,7 @@ const Orders = ({ orderss }) => {
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.name}</td>
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.email}</td>
                       <td className="px-6 py-4 font-semibold rounded text-center">{item.regd}</td>
-                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${item.payment=="pending"?"text-red-500":""}${item.payment=="paid"?"text-green-500":""} `}>{item.payment}</td>
+                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${item.payment=="pending"?"bg-red-500":""}${item.payment=="paid"?"bg-green-500":""} `}>{item.payment}</td>
                      
                     
                       {/* <td className="px-6 py-4 font-semibold">{item.address}/ (District:-{item.city} Pin:-{item.pincode})<br/>Phone:-{item.phone}</td> */}
@@ -154,6 +156,7 @@ const Orders = ({ orderss }) => {
                             updateorder(
                               item._id,
                               item.payment,
+                              item.regd
                             );
                           }}
                         >
@@ -235,7 +238,7 @@ const Orders = ({ orderss }) => {
                     onClick={handleUpdate}
                     className="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Update Order
+                    Update Status
                   </button>
                 </div>
               </div>

@@ -54,7 +54,7 @@ const handler = async (req, res) => {
               pass: 'MaRwImrfStFp1TPD'
             }
           });
-        let {name,email,regd,meal,phone}=req.body;
+        let {name,email,regd,status}=req.body;
         let fresher = await Senior.findOne({regd});
         let fresher1 = await Senior.findOne({email});
 
@@ -65,7 +65,7 @@ const handler = async (req, res) => {
             res.status(400).json({success:false,message:"Senior with same email address already exists"})
         }
         else{
-            let a = new Senior({name:name,email:email,regd:regd,meal:meal,phone:phone});
+            let a = new Senior({name:name,email:email,regd:regd,meal:status});
             await a.save();
             res.status(200).json({success:true,data:a})
             let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});

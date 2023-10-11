@@ -55,7 +55,6 @@ if(req.method=="POST"){
               pass: 'MaRwImrfStFp1TPD'
             }
           });
-    console.log(req.body);
 let a = await Senior.findByIdAndUpdate({_id:req.body.id},{payment:req.body.payment});
 let cpn = `AR${Math.floor(Math.random() * 10000)}`;
 let coupon = await Coupon.findOne({cpn});
@@ -63,7 +62,7 @@ if(coupon){
     cpn = `AR${Math.floor(Math.random() * 10000)}`;
 }
 else{
-    let a = new Coupon({cpn:cpn});
+    let a = new Coupon({cpn:cpn,regd:req.body.regd});
     await a.save();
     let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
 }
