@@ -169,6 +169,32 @@ const Cordinator = () => {
 
             </div>
             </SwiperSlide>
+            <SwiperSlide className=''>
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer group hover:bg-blue-600 rounded-xl border-2 border-gray-900 bg-gray-900 w-96 h-72">
+                <img className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://res.cloudinary.com/dawzncoau/image/upload/v1697047669/IMG_6503_2_rwrqp2.jpg" alt=""/>
+
+                <h1 className="mt-4 text-2xl font-semibold capitalize text-white group-hover:text-white">Hitanshu Sanibigraha
+</h1>
+
+                <p className="mt-2 dark:text-gray-300 group-hover:text-gray-300">220301120348
+@cutm.ac.in</p>
+                <p className="mt-2 dark:text-gray-300 group-hover:text-gray-300">Dept-CIVIL</p>
+
+            </div>
+            </SwiperSlide>
+            <SwiperSlide className=''>
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer group hover:bg-blue-600 rounded-xl border-2 border-gray-900 bg-gray-900 w-96 h-72">
+                <img className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://res.cloudinary.com/dawzncoau/image/upload/v1697047699/wp1_wey0kc.png" alt=""/>
+
+                <h1 className="mt-4 text-2xl font-semibold capitalize text-white group-hover:text-white">Sasmita Mishra
+</h1>
+
+                <p className="mt-2 dark:text-gray-300 group-hover:text-gray-300">220301120037
+@cutm.ac.in</p>
+                <p className="mt-2 dark:text-gray-300 group-hover:text-gray-300">Dept-CSE</p>
+
+            </div>
+            </SwiperSlide>
             
           
       </Swiper>
