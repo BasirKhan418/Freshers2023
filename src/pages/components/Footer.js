@@ -59,12 +59,6 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href={"/Couponclaimsection"}
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                    ARCPNCLM
-                  </Link>
                 </li>
                 <li>
                   <Link
