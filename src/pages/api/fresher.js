@@ -67,6 +67,7 @@ const handler = async (req, res) => {
             res.status(400).json({success:false,message:"Fresher with same email already exists"})
         }
         else{
+            let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
             let cpn = `AR${Math.floor(Math.random() * 10000)}`;
             let coupon = await Coupon.findOne({cpn});
             if(coupon){
@@ -78,7 +79,7 @@ const handler = async (req, res) => {
                     await a.save(); 
                     let ab= new Fresher({name:name,email:email,regd:regd,meal:status});
             await ab.save();
-            let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
+            
             res.status(200).json({success:true,data:a,cpn:cpn})
                 }
                 catch(err){
