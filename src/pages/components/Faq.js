@@ -18,7 +18,7 @@ const Faq = () => {
     },
     {
       "question": "What time does the party need to end?",
-      "answer": "The party must end by 1:30 PM."
+      "answer": "The party must end by 5:30 PM."
     },
     {
       "question": "Are alcoholic beverages and illegal substances allowed at the party?",

@@ -317,7 +317,7 @@ const Hero = () => {
       <section id="intro" className='absolute'>
     <div className="intro-container wow fadeIn">
       <h1 className="mb-4 pb-0 herofont">Join Us For <span className='text-yellow-600'> आRAMBH</span> 2023</h1>
-      <p className="mb-4 pb-0">13th October , 2023 , Near Gym Area At- 12.30 PM</p>
+      <p className="mb-4 pb-0">13th October , 2023 , Near Gym Area At- 12:30 PM</p>
       {/* <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" className="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a> */}
         <Timer/>
