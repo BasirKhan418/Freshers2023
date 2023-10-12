@@ -2,96 +2,122 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../trc/theme/theme";
 import FullLayout from "../../../trc/layouts/FullLayout";
-import mongoose, { set } from "mongoose";
 import toast,{Toaster} from "react-hot-toast";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Head from "next/head";
-const Orders = () => {
-  const router =useRouter();
-  const [order, SetOrder] = useState([]);
-  const [modal, Setmodal] = useState(false);
-  const [status,setStatus]=useState("");
-  const [id ,setId]=useState("");
-  const [regd,setRegd]=useState("");
-  const[email,setEmail]=useState("");
+import { useRouter } from "next/router";
+import { set } from "mongoose";
+const Searchorder = () => {
   useEffect(()=>{
-    const ref = async () => {
-      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getsenior`);
-      const resp = await a.json();
-      SetOrder(resp.data);
-      const myAdmin = localStorage.getItem('myAdmin')
+    const myAdmin = localStorage.getItem('myAdmin')
     if(!myAdmin){
       router.push('/admin/adminlogin');
      }
-     console.log(order);
-    };
-   
-    const intervalId = setInterval(() => {
-      ref(); // Fetch data every 2 minutes
-    }, 2000);
-
-    return () => clearInterval(intervalId);
   },[])
-  const handlechange=(e)=>{
-   if(e.target.name=="status"){
-     setStatus(e.target.value)
-   }
-   
+  const [sid,setsId]=useState("")
+  const shandlechange=(e)=>{
+    if(e.target.name=="id"){
+      setsId(e.target.value)
+      SetOrder("")
+      
+    }
   }
-  const updateorder=(id,status,regd,email)=>{
-   setId(id);
-    setStatus(status);
-    setRegd(regd);
-    setEmail(email);
-
-  }
-  const handleUpdate=async()=>{
-    const data={id,payment:status,regd,email};
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updatesenior`, {
+  const handleSearch=async()=>{
+    const pr = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/searchsenior`, {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(sid),
     });
-    const response=await res.json();
-    if(response.success==true){
-      toast.success('Order Updated Successfully', {
+    const res=await pr.json();
+    SetOrder(res.data);
+    console.log(res)
+  }
+  const [order, SetOrder] = useState();
+  const [modal, Setmodal] = useState(false);
+  const[regd,setRegd]=useState("");
+  const[status,setStatus]=useState("");
+  const[email,setEmail]=useState("");
+  const[id,setId]=useState("");
+  const handlechange=(e)=>{
+   if(e.target.name=="regd"){
+    setRegd(e.target.value)
+   }
+   else if(e.target.name=="status"){
+    setStatus(e.target.value)
+   }
+else if(e.target.name=="email"){
+    setEmail(e.target.value)
+}
+  }
+  
+  const updateorder=(regd,email,status,id)=>{
+    setRegd(regd)
+    setEmail(email)
+    setStatus(status)
+    setId(id)
+  }
+  const handleUpdate=async()=>{
+  const data={regd,email,payment:status,id}
+  const pr = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updatesenior`, {
+    method: "POST", // or 'PUT'
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const res=await pr.json();
+  if(res.success){
+    handleSearch();
+    Setmodal(false)
+    toast.success('Payment updated successfully!', {
         position: "top-right",
         });
-        Setmodal(false);
-        setStatus('');
-    }
-    else{
-      toast.error(response.message, {
+  }
+  else{
+    toast.success(response.message, {
         position: "top-right",
         });
-    }
+  }
   }
   return (
     <>
-    <Toaster/>
     <Head>
-      <title>All Seniors| Manage All Seniors</title>
-      <meta name="description" content="Effortlessly manage reservations and streamline culinary services with our Hotel Booking and Food Delivery Admin Panel. Take control of bookings, track orders, and ensure seamless operations for your hotel and food delivery services. Simplify your administrative tasks and optimize your hospitality and dining experiences with our comprehensive admin panel."/>
-      <meta name="keywords" content="hotel booking, food delivery, accommodation, online reservations, gourmet dining, seamless service, delightful stay, convenient hospitality, doorstep delivery, culinary experience, vacation getaway, top-rated hotel, comfortable accommodations, exquisite cuisine, memorable retreat" />
+        
+      <title>Search a for seniors |</title>
+     
      </Head>
-      <ThemeProvider theme={theme}>
-        <FullLayout>
-          <style jsx global>{`
-            footer {
-              display: none;
-            }
-            .Navbar {
-              display: none;
-            }
-          `}</style>
+    <ThemeProvider theme={theme}>
+       <FullLayout>
+       <style jsx global>{`
+        footer {
+          display:none;
+        }
+        .Navbar{
+          display:none
+        }
+      `}</style>
+      <Toaster/>
+       <div className='text-black dark:text-white h-16 flex bg-white items-center'>
+      <h1 className='sm:text-2xl text-xl font-bold mx-8'>Search a order or bookings</h1>
+     
+    </div>
+    <div className='h-1 w-96 bg-amber-500 rounded '></div>
+<div className='my-6'>   
+    <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div className="relative">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input value={sid} onChange={shandlechange} name="id" type="search" id="default-search" className=" font-semibold bock w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-100 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Your Booking ID...." required />
+        <button onClick={handleSearch} type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+    </div>
+</div>
 
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
            
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+           {order!=null?<table className="w-full text-sm text-left text-gray-500  dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   {/* <th scope="col" className="px-6 py-3 flex items-center">
@@ -104,14 +130,15 @@ const Orders = () => {
                     Name
                   </th>
                   <th scope="col" className="px-6 py-3 rounded text-center">
-                    Email
+                    Regd
                   </th>
                   <th scope="col" className="px-6 py-3 rounded text-center">
-                    Regd
+                    Email
                   </th>
                   <th scope="col" className="px-6 py-3 rounded text-center">
                     Payment Status
                   </th>
+                  
                   {/* <th scope="col" className="px-6 py-3">
                     {/* Customer Address
                   </th> */} 
@@ -122,10 +149,7 @@ const Orders = () => {
                
               </thead>
               <tbody>
-                {order.slice(0).reverse().map((item) => {
-                  return (
                     <tr
-                      key={item._id}
                       className="bg-white border-b-2 border-blue-200 rounded m-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
                       {/* <td  className="w-4 p-4">
@@ -142,36 +166,37 @@ const Orders = () => {
                       >
                         
                       </th> */}
-                      <td className="px-6 py-4 font-semibold rounded text-center">{item.name}</td>
-                      <td className="px-6 py-4 font-semibold rounded text-center">{item.email}</td>
-                      <td className="px-6 py-4 font-semibold rounded text-center">{item.regd}</td>
-                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${item.payment=="pending"?"bg-red-500":""}${item.payment=="paid"?"bg-green-500":""} `}>{item.payment}</td>
-                     
+                      <td className="px-6 py-4 font-semibold rounded text-center">{order.name}</td>
+                      <td className="px-6 py-4 font-semibold rounded text-center">{order.regd}</td>
+                      <td className="px-6 py-4 font-semibold rounded text-center">{order.email}</td>
+                      <td className={`px-6 py-4 font-semibold rounded text-center text-black ${order.payment=="pending"?"bg-red-500":""}${order.payment=="paid"?"bg-green-500":""} `}>{order.payment}</td>
+                      
                     
                       {/* <td className="px-6 py-4 font-semibold">{item.address}/ (District:-{item.city} Pin:-{item.pincode})<br/>Phone:-{item.phone}</td> */}
-                      <td className="px-6 py-4">
+                      {order&&<td className="px-6 py-4">
                         <button
-                          className="font-medium bg-yellow-600  hover:bg-amber-800 text-white rounded p-2 m-2"
+                          className="font-medium bg-yellow-600 dark:bg-blue-500 hover:bg-amber-800 text-white rounded p-2 m-2"
                           data-modal-target="popup-modal"
                           onClick={() => {
                             Setmodal(!modal);
                             updateorder(
-                              item._id,
-                              item.payment,
-                              item.regd,
-                              item.email
+                           order.regd,
+                           order.email,
+                            order.status,
+                            order._id
+
                             );
                           }}
                         >
                           Update
                         </button>
-                      
-                      </td>
+                       
+                      </td>}
                     </tr>
-                  );
-                })}
+                 
+               
               </tbody>
-            </table>
+            </table>:<h1 className="font-semibold rounded bg-blue-50 p-2 m-2 text-center">No Orders found for this order id!</h1>}
           </div>
           <div
             id="updateProductModal"
@@ -185,7 +210,7 @@ const Orders = () => {
               <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                 <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Update Order
+                    Update Status
                   </h3>
                   <button
                     onClick={() => {
@@ -212,15 +237,47 @@ const Orders = () => {
                   </button>
                 </div>
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
-                 
-                  
-                 
+                  <div>
+                    <label
+                      htmlFor="roomno"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                     Regd
+                    </label>
+                    <input
+                      type="text"
+                      name="regd"
+                      id="roomno"
+                      value={regd}
+                      onChange={handlechange}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Regd no."
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="checkin"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                     Check In
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      id="email"
+                      value={email}
+                      onChange={handlechange}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Ex. 10/09/2023"
+                    />
+                  </div>
+              
                   <div>
                     <label
                       htmlFor="status"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Payment Status
+                      Status
                     </label>
                     <select
                       id="status"
@@ -234,24 +291,24 @@ const Orders = () => {
                       <option>pending</option>
                     </select>
                   </div>
-                  
                 </div>
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={handleUpdate}
                     className="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Update Status
+                    Update Order
                   </button>
                 </div>
               </div>
             </div>
-          </div> 
-        </FullLayout>
-      </ThemeProvider>
+            </div>
+          
+            
+    </FullLayout>
+    </ThemeProvider>
     </>
-  );
-};
+  )
+}
 
-
-export default Orders;
+export default Searchorder

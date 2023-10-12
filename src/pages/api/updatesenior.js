@@ -63,7 +63,7 @@ if(coupon){
 }
 else{
     try{
-        let ba = await Senior.findByIdAndUpdate({_id:req.body.id},{payment:req.body.payment});
+        let ba = await Senior.findByIdAndUpdate({_id:req.body.id},{payment:req.body.payment,regd:req.body.regd,email:req.body.email});
         let a = new Coupon({cpn:cpn,regd:req.body.regd});
         await a.save();
         let b = await Mail.findOneAndUpdate({_id:"652695762d7239feaa278ab1"},{count:mail.count+1});
@@ -78,7 +78,7 @@ else{
 if(mail.count>=1&&mail.count<=200){
     const info = await transporter.sendMail({
         from: '<Team@arambh.com>', // sender address
-        to: `${a.email}`, // list of receivers
+        to: `${req.body.email}`, // list of receivers
         subject: `🎉 Freshers' Party Payment Confirmation 🚀`, // Subject line
         text: "Account Created Successfully", // plain text body
         html: `
@@ -111,7 +111,7 @@ if(mail.count>=1&&mail.count<=200){
 else if(mail.count>=201&&mail.count<=500){
     const info = await transporter1.sendMail({
         from: '<Team@arambh1.com>', // sender address
-        to: `${a.email}`, // list of receivers
+        to: `${req.body.email}`, // list of receivers
         subject: `🎉 Freshers' Party Payment Confirmation 🚀`, // Subject line
         text: "Account Created Successfully", // plain text body
         html: `
@@ -144,7 +144,7 @@ else if(mail.count>=201&&mail.count<=500){
 else if(mail.count>=501&&mail.count<=800){
     const info = await transporter2.sendMail({
         from: '<Team@arambh2.com>', // sender address
-        to: `${a.email}`, // list of receivers
+        to: `${req.body.email}`, // list of receivers
         subject: `🎉 Freshers' Party Payment Confirmation 🚀`, // Subject line
         text: "Account Created Successfully", // plain text body
         html: `
@@ -177,7 +177,7 @@ else if(mail.count>=501&&mail.count<=800){
 else if(mail.count>=801&&mail.count<=1100){
     const info = await transporter3.sendMail({
         from: '<Team@arambh3.com>', // sender address
-        to: `${a.email}`, // list of receivers
+        to: `${req.body.email}`, // list of receivers
         subject: `🎉 Freshers' Party Payment Confirmation 🚀`, // Subject line
         text: "Account Created Successfully", // plain text body
         html: `
@@ -210,7 +210,7 @@ else if(mail.count>=801&&mail.count<=1100){
 else if(mail.count>=1101&&mail.count<=1400){
     const info = await transporter4.sendMail({
         from: '<Team@arambh4.com>', // sender address
-        to: `${a.email}`, // list of receivers
+        to: `${req.body.email}`, // list of receivers
         subject: `🎉 Freshers' Party Payment Confirmation 🚀`, // Subject line
         text: "Account Created Successfully", // plain text body
         html: `

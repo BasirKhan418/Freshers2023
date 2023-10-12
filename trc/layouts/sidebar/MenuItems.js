@@ -14,6 +14,16 @@ const Menuitems = [
     icon: "folder-plus",
     href: "/admin/fresher",
   },
+  {
+    title: "Search Seniors",
+    icon: "search",
+    href: "/admin/searchsenior",
+  },
+  {
+    title: "Create Coupon",
+    icon: "folder-plus",
+    href: "/admin/createcoupon",
+  },
 ];
 
 export default Menuitems;

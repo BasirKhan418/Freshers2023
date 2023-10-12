@@ -20,7 +20,7 @@ const Navbar = () => {
   }, []);
   const navClass = scrolling ? 'bg-black' : '';
   return (
-    <div className=''>
+    <div className='Navbar'>
         <style jsx global>{`
        @import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
        .font{
@@ -50,7 +50,7 @@ const Navbar = () => {
         <Link className=" text-white hover:text-gray-400 font" href="#about">About</Link>
         <Link className=" text-white hover:text-gray-400 font" href="#guest">Guests</Link>
         <Link className=" text-white hover:text-gray-400 font " href="#timeline">Timeline</Link>
-        <Link className=" text-white hover:text-gray-400 font" href="#co-ordinator">Co-ordinator</Link>
+        {/* <Link className=" text-white hover:text-gray-400 font" href="#co-ordinator">Co-ordinator</Link> */}
         <Link className=" text-white hover:text-gray-400 font" href="#co-ordinator">Faq</Link>
         <Link className=" text-white hover:text-gray-400 font" href="#contact">Contact Us</Link>
         <Link className='bg-yellow-600 text-white px-4 py-2 m-2 font hover:bg-gray-800 rounded-3xl border-2 border-yellow-800' href={"/Register"}>
